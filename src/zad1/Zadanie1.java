@@ -58,14 +58,7 @@ class MyFrame extends JFrame implements ActionListener {
         setVisible(true);
         setLocationRelativeTo(null);
     }
-    public void przemaluj(DefaultListModel<Integer> model){
-       /* wartosciWycinkow = Methods.wartosciPie(model);
-        for(int i=0;i<wartosciWycinkow.size();i++){
-            Random r = new Random();
-            Color kolor = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256));
-            System.out.println(kolor);
-            wycinki.add(new Wycinek(wartosciWycinkow.get(i),kolor));
-        }*/
+    public void przemaluj(){
         pieChart = new ChartPanel(wartosciWycinkow,wycinki);
         add(pieChart);
         pieChart.repaint();
@@ -88,8 +81,6 @@ class MyFrame extends JFrame implements ActionListener {
                 wycinki.add(new Wycinek(wartosciWycinkow.get(wartosciWycinkow.size()-1),kolor));
             } else if(e.getSource().equals(usun)&&dane.getSelectedIndex()!=-1){
                 System.out.println("USUWANIE");
-                System.out.println(dane.getSelectedIndex());
-                System.out.println(wycinki.get(dane.getSelectedIndex()));
                 wycinki.remove(dane.getSelectedIndex());
                 model.remove(dane.getSelectedIndex());
                 Methods.aktualizujListe(wycinki,model);
@@ -98,7 +89,7 @@ class MyFrame extends JFrame implements ActionListener {
                 model.setElementAt(input,dane.getSelectedIndex());
                 Methods.aktualizujListe(wycinki,model);
             }
-            przemaluj(model);
+            przemaluj();
             dane.setModel(model);
         } catch (NumberFormatException ex) {
             System.out.println("Wrong input.");
@@ -125,10 +116,7 @@ class ChartPanel extends JPanel{
         if(wycinki.size()!=0){
             for(int i=0;i<wycinki.size();i++){
                 g2D.setPaint(wycinki.get(i).kolor);
-                System.out.println(wycinki.get(i).kolor);
                 g2D.fillArc(10,10,380,380,startAngle,wycinki.get(i).dlugoscWycinka);
-                System.out.println(wycinki.get(i).dlugoscWycinka);
-                System.out.println(startAngle);
                 startAngle+=wycinki.get(i).dlugoscWycinka;
             }
         }

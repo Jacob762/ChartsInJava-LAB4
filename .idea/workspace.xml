@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a4abb9c-c921-42eb-b3b3-fda877224546" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/zad1/Zadanie1.java" afterDir="false" />
+    <list default="true" id="0a4abb9c-c921-42eb-b3b3-fda877224546" name="Changes" comment="Dodano:&#10;- dzialajace zadanie 1 &#10;- wykres zmienia sie na biezaco, nie wystepuja bledy&#10;- wykres ma problem kiedy wychodza katy nie nalezace do C, wynika to z faktu ze funkcja fillArc nie przyjmuje doublow&#10;To-do:&#10;- upiekszenie kodu, stworzenie funkcji do powtarzajacaego sie kodu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zad1/Zadanie1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zad1/Zadanie1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +76,17 @@
       <workItem from="1670073878902" duration="1546000" />
       <workItem from="1670153177936" duration="1490000" />
       <workItem from="1670155372496" duration="10339000" />
-      <workItem from="1670185186214" duration="2019000" />
+      <workItem from="1670185186214" duration="2853000" />
+      <workItem from="1670244216332" duration="365000" />
     </task>
+    <task id="LOCAL-00001" summary="Dodano:&#10;- dzialajace zadanie 1 &#10;- wykres zmienia sie na biezaco, nie wystepuja bledy&#10;- wykres ma problem kiedy wychodza katy nie nalezace do C, wynika to z faktu ze funkcja fillArc nie przyjmuje doublow&#10;To-do:&#10;- upiekszenie kodu, stworzenie funkcji do powtarzajacaego sie kodu">
+      <created>1670187614064</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670187614064</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,5 +102,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Dodano:&#10;- dzialajace zadanie 1 &#10;- wykres zmienia sie na biezaco, nie wystepuja bledy&#10;- wykres ma problem kiedy wychodza katy nie nalezace do C, wynika to z faktu ze funkcja fillArc nie przyjmuje doublow&#10;To-do:&#10;- upiekszenie kodu, stworzenie funkcji do powtarzajacaego sie kodu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodano:&#10;- dzialajace zadanie 1 &#10;- wykres zmienia sie na biezaco, nie wystepuja bledy&#10;- wykres ma problem kiedy wychodza katy nie nalezace do C, wynika to z faktu ze funkcja fillArc nie przyjmuje doublow&#10;To-do:&#10;- upiekszenie kodu, stworzenie funkcji do powtarzajacaego sie kodu" />
   </component>
 </project>
