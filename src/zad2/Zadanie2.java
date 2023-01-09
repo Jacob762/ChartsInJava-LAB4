@@ -1,6 +1,8 @@
 package zad2;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,13 +18,13 @@ public class Zadanie2 {
 
 class MyFrame extends JFrame implements ActionListener {
     final int N = 10;
-    List<JTextField> polaTekstowe = Methods.init_polaTekstowe(N);
     List<JCheckBox> checkBoxy = Methods.init_checkBoxy(N);
     List<JLabel> labelTest = Methods.init_labelTest(N);
     List<Integer> wysokosciSlupkow;
     List<Slupek> slupeks = Methods.init_Slupki(N);
     ChartPanel chart;
     List<Integer> inputs = Methods.init_inputs(N);
+    List<JTextField> polaTekstowe = Methods.init_polaTekstowe(N);
     int x=130;
     int y=100;
     public MyFrame(){
@@ -38,27 +40,39 @@ class MyFrame extends JFrame implements ActionListener {
             add(checkBoxy.get(i));
             add(labelTest.get(i));
         }
+        for(JTextField element : polaTekstowe){
+            element.getDocument().addDocumentListener(new DocumentListener() {
+                public void changedUpdate(DocumentEvent e) {
+                    operate();
+                }
+                public void removeUpdate(DocumentEvent e) {
+                    operate();
+                }
+                public void insertUpdate(DocumentEvent e) {
+                    operate();
+                }
+            });
+        }
         setLayout(null);
         setVisible(true);
         setLocationRelativeTo(null);
+        setResizable(false);
     }
     public void przemaluj(){
         chart = new ChartPanel(slupeks);
         add(chart);
         chart.repaint();
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public void operate(){
         for(int i=0;i<checkBoxy.size();i++){
             if(checkBoxy.get(i).isSelected()){
-                System.out.println("selected" + i);
+                System.out.println("selected " + i);
                 try{
                     int input = Integer.parseInt(polaTekstowe.get(i).getText());
                     inputs.set(i,input);
-                    System.out.println(inputs.get(i));
                 } catch (NumberFormatException ex){
                     System.out.println("Wrong input.");
+                    inputs.set(i,0);
                 }
             } else inputs.set(i,0);
         }
@@ -67,6 +81,10 @@ class MyFrame extends JFrame implements ActionListener {
         przemaluj();
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        operate();
+    }
 }
 
 class ChartPanel extends JPanel{
@@ -85,12 +103,8 @@ class ChartPanel extends JPanel{
         for(int i=0;i<slupeks.size();i++){
             if(slupeks.get(i).height!=0){
                 y=400-slupeks.get(i).height*3;
-                System.out.println("XD");
                 g2D.setPaint(slupeks.get(i).color);
                 g2D.fillRect(x,y,30,slupeks.get(i).height*3);
-                System.out.println(x);
-                System.out.println(y);
-                System.out.println(slupeks.get(i).height*3);
                 x+=40;
             }
         }
@@ -130,12 +144,11 @@ class Methods{
         for(int i=0;i<n;i++) wysokosci.add(0);
         int calosc=0;
         for(int i=0;i<n;i++) calosc+=inputs.get(i);
-        System.out.println(calosc);
         for(int i=0;i<n;i++) {
             try {
                 XD = (double) inputs.get(i) / calosc *100;
-                wysokosci.set(i, (int) XD);
-                System.out.println(wysokosci.get(i));
+                if(XD!=0&&XD<1) XD=1; //zabezpieczenie przed usunieciem slupka, co dzieje przy ogromnych roznicach procentowych
+                wysokosci.set(i, (int) Math.round(XD));
             } catch (ArithmeticException e) {
                 System.out.println("NO DIVIDO THRU ZERO MEINE FREUNDE!");
                 wysokosci.set(i,0);
@@ -149,7 +162,6 @@ class Methods{
 class Slupek{
     public int height;
     public Color color;
-
     public Slupek(int wysokosc, Color kolor){
     this.height = wysokosc;
     this.color = kolor;

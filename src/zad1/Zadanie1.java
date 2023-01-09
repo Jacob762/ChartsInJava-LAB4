@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +24,7 @@ class MyFrame extends JFrame implements ActionListener {
     JButton edytuj;
     JList<Integer> dane;
     ChartPanel pieChart;
+    JScrollPane lista;
     MyFrame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000,700);
@@ -32,13 +34,14 @@ class MyFrame extends JFrame implements ActionListener {
         usun = new JButton("usun");
         edytuj = new JButton("edytuj");
         dane = new JList<>();
+        lista = new JScrollPane(dane);
         //wartosciWycinkow = new ArrayList<>();
         //ustawienie elementow gui
         inputField.setBounds(130,100,100,20);
         dodaj.setBounds(80,170,70,30);
         usun.setBounds(150,170,70,30);
         edytuj.setBounds(220,170,70,30);
-        dane.setBounds(150,370,100,200);
+        lista.setBounds(150,370,100,200);
         //tworzenie modelu danych dla Jlist
         DefaultListModel<Integer> model1 = new DefaultListModel<>();
         dane.setModel(model1);
@@ -48,7 +51,7 @@ class MyFrame extends JFrame implements ActionListener {
         add(dodaj);
         add(usun);
         add(edytuj);
-        add(dane);
+        add(lista);
         //dodanie action listenera
         dodaj.addActionListener(this);
         usun.addActionListener(this);
@@ -57,6 +60,7 @@ class MyFrame extends JFrame implements ActionListener {
         setLayout(null);
         setVisible(true);
         setLocationRelativeTo(null);
+        setResizable(false);
     }
     public void przemaluj(){
         pieChart = new ChartPanel(wartosciWycinkow,wycinki);
@@ -126,7 +130,6 @@ class ChartPanel extends JPanel{
 class Methods{
     public static List<Integer> wartosciPie(DefaultListModel<Integer> modelOG){
         List<Integer> lista = new ArrayList<>();
-        double procent;
         double dlugoscWycinka;
         int calosc = 0;
         int wynik;
@@ -135,9 +138,8 @@ class Methods{
         }
         try{
             for(int i=0;i<modelOG.size();i++){
-                procent = (double) modelOG.get(i)/calosc;
-                dlugoscWycinka = 360*procent;
-                wynik = (int) dlugoscWycinka;
+                dlugoscWycinka = 360.0*((double)modelOG.get(i))/((double)calosc);
+                wynik = (int) Math.round(dlugoscWycinka); //poprawne zakraglenie
                 lista.add(wynik);
             }
         } catch (ArithmeticException e){
